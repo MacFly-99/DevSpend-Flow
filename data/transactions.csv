@@ -1,0 +1,9 @@
+date,description,montant,categorie
+2026-10-01,Abonnement GitHub,4.00,Dev
+2026-10-02,Café,2.50,Alimentation
+2026-10-02,Café,2.50,Alimentation
+2026-10-03,Serveur OVH,12.00,Infra
+2026-10-05,Déjeuner,15.00,Alimentation
+2026-10-06,Abonnement VSCode,10.00,Dev
+2026-10-10,Essence,45.00,Transport
+2026-10-15,Serveur OVH,12.00,Infra
