@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
 
 # Configuration de la page
 st.set_page_config(page_title="DevSpend-Flow Dashboard", page_icon="💸", layout="wide")
@@ -8,8 +9,8 @@ st.set_page_config(page_title="DevSpend-Flow Dashboard", page_icon="💸", layou
 st.title("💸 DevSpend-Flow - Dashboard")
 st.markdown("Bienvenue sur le tableau de bord de vos dépenses.")
 
-# URL API locale
-API_URL = "http://127.0.0.1:8000/api/v1"
+# On lit l'URL depuis les variables d'environnement, sinon on utilise le localhost par défaut
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/api/v1")
 
 # On fait un appel GET à notre API pour récupérer le résumé analytique
 try:

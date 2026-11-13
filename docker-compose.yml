@@ -1,0 +1,29 @@
+services:
+  # Le service de notre API FastAPI
+  api:
+    build: .
+    container_name: devspend_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Permet de recharger le code en direct (dev mode)
+    environment:
+      - DATABASE_URL=sqlite:///./devspend.db
+    # On garde le --reload pour le développement
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Le service de notre Dashboard Streamlit
+  dashboard:
+    build: .
+    container_name: devspend_dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      # On dit au dashboard d'aller chercher l'API via le nom du service Docker
+      - API_URL=http://api:8000/api/v1
+    depends_on:
+      - api # On attend que l'API démarre avant de lancer le dashboard
+    # La commande pour lancer Streamlit
+    command: streamlit run dashboard.py --server.port 8501 --server.address 0.0.0.0
